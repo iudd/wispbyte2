@@ -1,8 +1,6 @@
 {
     "name": "wispbyte-template",
     "private": true,
-    "version": "1.0.0",
-    "description": "Wispbyte deployment template - Server + Web framework",
     "workspaces": ["server", "web"],
     "scripts": {
         "dev": "concurrently \"bun run dev:server\" \"bun run dev:web\" --kill-others-on-exit",
