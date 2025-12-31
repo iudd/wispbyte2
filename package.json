@@ -1,30 +1,24 @@
 {
-    "name": "hapi",
+    "name": "wispbyte-template",
     "private": true,
-    "workspaces": ["cli", "server", "web"],
+    "version": "1.0.0",
+    "description": "Wispbyte deployment template - Server + Web framework",
+    "workspaces": ["server", "web"],
     "scripts": {
         "dev": "concurrently \"bun run dev:server\" \"bun run dev:web\" --kill-others-on-exit",
-        "build": "bun run build:cli && bun run build:server && bun run build:web",
-        "build:cli": "cd cli && bun run build",
-        "build:single-exe": "bun run build:web && (cd server && bun run generate:embedded-web-assets) && (cd cli && bun run build:exe:allinone)",
-        "build:single-exe:all": "bun run build:web && (cd server && bun run generate:embedded-web-assets) && (cd cli && bun run build:exe:allinone:all)",
+        "build": "bun run build:server && bun run build:web",
         "build:server": "cd server && bun run build",
         "build:web": "cd web && bun run build",
         "dev:server": "cd server && bun run dev",
         "dev:web": "cd web && bun run dev",
-        "typecheck": "bun run typecheck:cli && bun run typecheck:web && bun run typecheck:server",
-        "typecheck:cli": "cd cli && bun run typecheck",
+        "typecheck": "bun run typecheck:web && bun run typecheck:server",
         "typecheck:server": "cd server && bun run typecheck",
         "typecheck:web": "cd web && bun run typecheck",
-        "test": "bun run test:cli && bun run test:server",
-        "test:cli": "cd cli && bun run test",
-        "test:server": "cd server && bun run test",
-        "clean-session": "bun run server/scripts/cleanup-sessions.ts",
-        "release-all": "cd cli && bun run release-all"
+        "test": "bun run test:server",
+        "test:server": "cd server && bun run test"
     },
     "devDependencies": {
         "concurrently": "^9.2.1",
-        "react-devtools-core": "^7.0.1",
         "vite-plugin-pwa": "^1.2.0"
     }
 }
