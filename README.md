@@ -1,78 +1,86 @@
 # Wispbyte Template
 
-A full-stack template for deploying applications to the Wispbyte platform.
-
-## Project Structure
-
-```
-wispbyte-template/
-├── server/          # Backend - Hono + Bun + Socket.IO + Telegram Bot
-├── web/             # Frontend - React 19 + Vite + Tailwind CSS
-├── package.json     # Bun workspaces config
-└── tsconfig.base.json
-```
+A full-stack application template for deploying to Wispbyte platform.
 
 ## Features
 
-- **Server**: Hono HTTP framework, Socket.IO, SSE, optional Telegram Bot
-- **Web**: React 19, Vite, Tailwind CSS, PWA support
-- **TypeScript**: Full type safety across all packages
-- **Bun**: Fast runtime and package manager
+- **Server**: Hono + Socket.IO + SSE + Telegram Bot
+- **Web**: React 19 + Vite + Tailwind CSS + PWA
+- **Runtime**: Bun workspaces
 
 ## Quick Start
-
-### Prerequisites
-
-- [Bun](https://bun.sh/) installed
-
-### Development
 
 ```bash
 # Install dependencies
 bun install
 
-# Start development servers (server + web)
+# Development
 bun run dev
-```
 
-### Build
-
-```bash
-# Build all packages
+# Build
 bun run build
 ```
 
-### Environment Variables
+## Project Structure
+
+```
+wispbyte-template/
+├── package.json           # Workspace config
+├── tsconfig.base.json     # Shared TypeScript config
+├── server/                # Backend server
+│   ├── src/
+│   │   ├── index.ts       # Entry point
+│   │   ├── configuration.ts
+│   │   ├── telegram/      # Telegram bot
+│   │   ├── web/           # HTTP routes
+│   │   ├── socket/        # Socket.IO
+│   │   ├── sse/           # Server-Sent Events
+│   │   └── utils/
+│   └── package.json
+└── web/                   # Frontend app
+    ├── src/
+    │   ├── main.tsx       # Entry point
+    │   ├── App.tsx        # Root component
+    │   ├── components/    # UI components
+    │   ├── hooks/         # React hooks
+    │   └── lib/           # Utilities
+    ├── index.html
+    └── package.json
+```
+
+## Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `WEBAPP_PORT` | `3006` | Server listening port |
 | `CLI_API_TOKEN` | (auto-generated) | Access token for API |
 | `TELEGRAM_BOT_TOKEN` | - | Telegram bot token (optional) |
-| `WEBAPP_URL` | - | Public URL for the app |
+| `WEBAPP_URL` | - | Public URL for Telegram Mini App |
 | `ALLOWED_CHAT_IDS` | - | Comma-separated Telegram chat IDs |
 
-## Development Guide
+## Development
 
-### Adding New Features
-
-1. **Server API**: Add routes in `server/src/web/`
-2. **Frontend Pages**: Add components in `web/src/routes/`
-3. **Shared Types**: Define in respective `types/` directories
-
-### Project Conventions
-
-- TypeScript strict mode
-- 4-space indentation
-- Path alias `@/*` maps to `./src/*` per package
-
-## Deployment
-
-This template is designed for Wispbyte platform deployment. Use the provided Dockerfile in `server/` for containerization.
+### Server
 
 ```bash
-docker build -t my-app -f server/Dockerfile .
-docker run -p 3006:3006 my-app
+cd server && bun run dev
+```
+
+### Web
+
+```bash
+cd web && bun run dev
+```
+
+## Build & Deploy
+
+```bash
+# Build all
+bun run build
+
+# Or build separately
+bun run build:server
+bun run build:web
 ```
 
 ## License
