@@ -3,15 +3,18 @@
 Short guide for AI agents in this repo.
 
 ## Repo layout
-- `server/` - Hono HTTP server + Socket.IO + SSE + Telegram Bot
-- `web/` - React 19 frontend with Vite + Tailwind
+
+- `server/` - Hono HTTP server + Socket.IO + SSE + Telegram bot
+- `web/` - React PWA / Telegram Mini App
 
 ## Reference docs
+
 - `README.md` (project overview)
-- `server/README.md` (server setup and architecture)
-- `web/README.md` (web app behavior and dev workflow)
+- `server/README.md` (server setup)
+- `web/README.md` (web app workflow)
 
 ## Shared rules
+
 - TypeScript strict; no untyped code.
 - Bun workspaces; run `bun` commands from repo root.
 - Path alias `@/*` maps to `./src/*` per package.
@@ -19,15 +22,17 @@ Short guide for AI agents in this repo.
 
 ## Common commands (repo root)
 
-- `bun install` - Install all dependencies
-- `bun run dev` - Start dev servers (server + web)
-- `bun run build` - Build all packages
-- `bun typecheck` - Type check all packages
+- `bun install` - Install dependencies
+- `bun run dev` - Start development servers
+- `bun run build` - Build for production
+- `bun typecheck` - Type checking
 
 ## Key source dirs
+
 - `server/src/web/` - HTTP routes
+- `server/src/socket/` - Socket.IO handlers
 - `server/src/telegram/` - Telegram bot
-- `server/src/sse/` - Server-sent events
+- `server/src/sse/` - Server-Sent Events
 - `web/src/components/` - React components
-- `web/src/routes/` - Page routes
 - `web/src/hooks/` - React hooks
+- `web/src/lib/` - Utilities
